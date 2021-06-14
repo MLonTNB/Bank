@@ -16,6 +16,7 @@ def create_bank_transactions(*, block, message):
             block=block,
             fee=tx.get('fee', ''),
             memo=tx.get('memo', ''),
+            json_data=tx.get('json_data', ''),
             recipient=tx['recipient']
         )
         bank_transactions.append(bank_transaction)
