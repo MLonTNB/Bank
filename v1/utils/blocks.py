@@ -4,6 +4,7 @@ from v1.accounts.models.account import Account
 from v1.bank_transactions.models.bank_transaction import BankTransaction
 from v1.blocks.models.block import Block
 from v1.confirmation_blocks.models.confirmation_block import ConfirmationBlock
+from v1.utils.encryption import symmetric_encrypt, asymmetric_encrypt
 
 
 def create_bank_transactions(*, block, message):
@@ -11,6 +12,15 @@ def create_bank_transactions(*, block, message):
     bank_transactions = []
 
     for tx in message['txs']:
+        json_data = None
+        if 'json_data' in tx and 'encryption_key' in tx:
+            json_data = tx.get('json_data', '')
+            json_data = symmetric_encrypt(json_data, '')  # TODO: add symmetric key
+
+            encryption_key = tx.get('encryption_key', '')
+            encrypted_symmetric_key = asymmetric_encrypt('', encryption_key)  # TODO: encrypt symmetric key
+
+
         bank_transaction = BankTransaction(
             amount=tx['amount'],
             block=block,
