@@ -4,4 +4,3 @@ def symmetric_encrypt(message: str, key: str) -> str:
 
 def asymmetric_encrypt(message: str, key: str) -> str:
     return ''
-å
