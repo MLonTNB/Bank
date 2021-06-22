@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class Keys(AppConfig):
+class Key(AppConfig):
     name = 'v1.keys'
