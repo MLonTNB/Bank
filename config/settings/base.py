@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'v1.invalid_blocks.apps.InvalidBlocksConfig',
     'v1.self_configurations.apps.SelfConfigurationsConfig',
     'v1.validator_confirmation_services.apps.ValidatorConfirmationServicesConfig',
+    'v1.keys.apps.Key'
 
 ]
 
