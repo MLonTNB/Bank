@@ -1,0 +1,11 @@
+Patient has existing data, existing accessors
+Patient wants to revoke access for A1
+Patient sends revoke_access request
+The key for A1 is removed from the keys table
+All transactions for Patient are retrieved
+JSON data is retrieved
+register_data and append_data transactions are decrypted with symmetric key (symmetric key is decrypted using the node's private key)
+a new fix_data transaction is appended, where the patient's data is encrypted with a new symmetric key
+
+
+

@@ -6,6 +6,7 @@ from v1.blocks.models.block import Block
 
 class Key(models.Model):
     patient_id = models.UUIDField(editable=False, primary_key=True)
+    accessor = models.UUIDField(editable=False, primary_key=True)
     encrypted_symmetric_key = models.UUIDField(editable=False)
 
     class Meta:
