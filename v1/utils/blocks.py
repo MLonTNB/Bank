@@ -46,14 +46,15 @@ def create_bank_transactions(*, block, message):
                 transactions = get_json_transactions(sender)
                 new_transaction_data = {}
                 for transaction in transactions:
-                    if transaction["type"] in ["register_data", "append_data"]:
-                        decrypted_data = asymmetric_decrypt(transaction["data"], node_private_key)
+                    if transaction["json_data"]["type"] in ["register_data", "append_data"]:
+                        decrypted_data = asymmetric_decrypt(transaction["json_data"]["data"], node_private_key)
                         new_transaction_data.update(decrypted_data)
                 new_data_symmetric_result = symmetric_encrypt(json.dumps(new_transaction_data))
 
                 new_transaction_json_data_for_db = {
                     "patient_id": encryption_key,
-                    "data": {'type': 'fix_data', 'data': new_data_symmetric_result},
+                    "type": type
+                    "data": new_data_symmetric_result,
                     "access": encrypted_symmetric_key
                 }
 
@@ -72,7 +73,8 @@ def create_bank_transactions(*, block, message):
 
             json_data_for_db = {
                 "patient_id": encryption_key,
-                "data": {'data':symmetric_result['message'], 'type': type},
+                "type": type
+                "data": symmetric_result['message'],
                 "access": encrypted_symmetric_key
             }
 
